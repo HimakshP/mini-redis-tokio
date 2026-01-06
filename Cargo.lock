@@ -399,6 +399,7 @@ dependencies = [
 name = "redis-tuto"
 version = "0.1.0"
 dependencies = [
+ "bytes",
  "mini-redis",
  "tokio",
 ]
