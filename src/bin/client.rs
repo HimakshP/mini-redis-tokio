@@ -21,8 +21,6 @@ type Responder<T> = oneshot::Sender<mini_redis::Result<T>>;
 #[tokio::main]
 async fn main () {
 
-    
-
     let (tx, mut rx) = mpsc::channel(32); //tx is transmitter, rx is reciever, after 32 messages the tx pauses
     let tx2 = tx.clone(); // second transmitter because multi-producer single consumer so receiver is one 
 
@@ -68,15 +66,13 @@ async fn main () {
         let (tx_resp, rx_resp) = oneshot::channel();
         let cmd = Commands::Set { 
             key: "bahn".to_string(), 
-            val: "ki lolli".into() ,
+            val: "ka lolla".into() ,
             resp: tx_resp,
         };
 
         tx2.send(cmd).await.unwrap();
         let res = rx_resp.await;
         println!("GOT = {:?}", res);
-
-        
     });
 
 

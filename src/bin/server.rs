@@ -1,11 +1,14 @@
-use std::collections::HashMap;
 use bytes::Bytes;
+use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
-type Db = Arc<Mutex<HashMap<String,Bytes>>>;
+type Db = Arc<Mutex<HashMap<String, Bytes>>>;
 
+use mini_redis::{
+    Command, Connection, Frame,
+    cmd::{self, Set},
+};
 use tokio::net::{TcpListener, TcpStream};
-use mini_redis::{Command, Connection, Frame, cmd::{self, Set}};
 
 #[tokio::main]
 async fn main() {
@@ -26,29 +29,26 @@ async fn main() {
 }
 
 async fn process(socket: TcpStream, db: Db) {
-
-   use mini_redis::Command::{self, Get, Set};
-   use std::collections::HashMap;
+    use mini_redis::Command::{self, Get, Set};
+    use std::collections::HashMap;
 
     //let mut db = HashMap::new(); //hashmap datastructure to store commands
 
     let mut connection = Connection::new(socket); //connection to recieve commands 
 
-
     while let Some(frame) = connection.read_frame().await.unwrap() {
         let response = match Command::from_frame(frame).unwrap() {
-            Set(cmd) => { 
-                let mut db = db.lock().unwrap();                                              
+            Set(cmd) => {
+                let mut db = db.lock().unwrap();
                 db.insert(cmd.key().to_string(), cmd.value().clone()); // setting the value of key in the db using clone 
                 Frame::Simple("OK".to_string())
-            },
+            }
 
             Get(cmd) => {
-                let db = db.lock().unwrap(); 
+                let db = db.lock().unwrap();
                 if let Some(value) = db.get(cmd.key()) {
                     Frame::Bulk(value.clone().into()) // getting the value of key via clone()
-                }
-                else{   
+                } else {
                     Frame::Null
                 }
             }
