@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "project": {
+    "totalFocusTime": 2459743,
+    "totalActiveTime": 425731
+  },
+  "files": {
+    "src/connection.rs": {
+      "pending": 416622,
+      "focus": 2446833
+    },
+    "src/bin/client.rs": {
+      "pending": 0,
+      "focus": 25319
+    },
+    "src/lib.rs": {
+      "pending": 3836,
+      "focus": 11227
+    }
+  },
+  "deleted": {
+    "active": 5273,
+    "focus": 21330
+  }
+}
