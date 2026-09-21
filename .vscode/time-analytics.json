@@ -1,21 +1,37 @@
 {
   "version": "1.0",
   "project": {
-    "totalFocusTime": 3504023,
-    "totalActiveTime": 513631
+    "totalFocusTime": 17450180,
+    "totalActiveTime": 1093324
   },
   "files": {
     "src/connection.rs": {
-      "pending": 504522,
-      "focus": 3170773
+      "pending": 505023,
+      "focus": 3301342
     },
     "src/bin/client.rs": {
       "pending": 0,
-      "focus": 25319
+      "focus": 169811
     },
     "src/lib.rs": {
-      "pending": 3836,
-      "focus": 11227
+      "pending": 8736,
+      "focus": 72657
+    },
+    "src/bin/server.rs": {
+      "pending": 469981,
+      "focus": 10654411
+    },
+    "README.md": {
+      "pending": 0,
+      "focus": 188550
+    },
+    "DESIGN.md": {
+      "pending": 44967,
+      "focus": 285713
+    },
+    "src/db.rs": {
+      "pending": 59344,
+      "focus": 568677
     }
   },
   "deleted": {
